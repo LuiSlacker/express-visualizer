@@ -1,11 +1,17 @@
 'use strict';
 
 const Router = require('./Router');
-const path = require('path');
 
 module.exports = (app) => {
+  // Allow CORS
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+  });
+
   app.get('/visualize', (req, res, next) => { // eslint-disable-line no-unused-vars
-    res.sendFile(path.join(__dirname, '/index.html'));
+    res.json('Hello');
   });
 
   app.get('/fetchData', (req, res, next) => { // eslint-disable-line no-unused-vars
