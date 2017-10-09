@@ -10,6 +10,7 @@ module.exports = {
   output: {
     filename: './public/js/bundle.js',
   },
+  devtool: 'source-map',
   module: {
     loaders: [
       {
@@ -25,7 +26,7 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('./public/css/style.css', { allChunks: true }),
-    new CleanWebpackPlugin(['./public'], { exclude: ['index.html'] }),
+    new CleanWebpackPlugin(['./public'], { exclude: ['index.html', 'bootstrap.min.css', 'bootstrap.min.js'] }),
   ],
   watch: true,
 };

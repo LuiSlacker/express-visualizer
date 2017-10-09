@@ -1812,7 +1812,7 @@ var Main = function (_React$Component) {
     value: function fetchStack() {
       var _this2 = this;
 
-      _axios2.default.get('/fetchData').then(function (response) {
+      _axios2.default.get('/expressVisualizer/fetchData').then(function (response) {
         _this2.setState({ stack: response.data.router.stack });
       }).catch(console.log);
     }
@@ -1822,13 +1822,67 @@ var Main = function (_React$Component) {
       return _react2.default.createElement(
         'main',
         null,
-        this.state.stack.map(function (entry) {
+        this.state.stack.filter(function (entry) {
+          return entry.type === 'Endpoint';
+        }).map(function (entry, index) {
           return _react2.default.createElement(
             'div',
-            null,
-            entry.type,
-            ' - ',
-            entry.name
+            { key: index, className: 'panel panel-primary' },
+            _react2.default.createElement(
+              'div',
+              { className: 'panel-heading' },
+              _react2.default.createElement(
+                'h3',
+                { className: 'panel-title' },
+                _react2.default.createElement(
+                  'a',
+                  { 'data-toggle': 'collapse', 'data-target': '#panel' + index, href: '#panel' + index },
+                  entry.HTTPverbs,
+                  '  ',
+                  entry.path
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { id: 'panel' + index, className: 'panel-collapse collapse in' },
+              _react2.default.createElement(
+                'div',
+                { className: 'panel-body' },
+                _react2.default.createElement(
+                  'h4',
+                  null,
+                  'local Middlewares'
+                ),
+                _react2.default.createElement(
+                  'ul',
+                  null,
+                  entry.localMDDWStack.map(function (mdw) {
+                    return _react2.default.createElement(
+                      'li',
+                      null,
+                      mdw.name
+                    );
+                  })
+                ),
+                _react2.default.createElement(
+                  'h4',
+                  null,
+                  'global Middlewares'
+                ),
+                _react2.default.createElement(
+                  'ul',
+                  null,
+                  entry.globalMDDWStack.map(function (mdw) {
+                    return _react2.default.createElement(
+                      'li',
+                      null,
+                      mdw.name
+                    );
+                  })
+                )
+              )
+            )
           );
         })
       );
@@ -22917,3 +22971,4 @@ module.exports = function() {
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=bundle.js.map

@@ -1,6 +1,6 @@
 'use strict';
 
-const Router = require('./Router');
+const Router = require('./core/Router');
 const path = require('path');
 
 module.exports = (app) => {
@@ -11,15 +11,27 @@ module.exports = (app) => {
     next();
   });
 
-  app.get('/visualize', (req, res, next) => { // eslint-disable-line no-unused-vars
+  app.get('/expressVisualizer/visualize', (req, res, next) => { // eslint-disable-line no-unused-vars
     res.sendFile(path.join(__dirname, './public/index.html'));
   });
 
-  app.get('/fetchData', (req, res, next) => { // eslint-disable-line no-unused-vars
+  app.get('/expressVisualizer/fetchData', (req, res, next) => { // eslint-disable-line no-unused-vars
     res.json(new Router(app._router)); // eslint-disable-line no-underscore-dangle
   });
 
-  app.get('/js/bundle.js', (req, res, next) => { // eslint-disable-line no-unused-vars
+  app.get('/expressVisualizer/js/bundle.js', (req, res, next) => { // eslint-disable-line no-unused-vars
     res.sendFile(path.join(__dirname, './public/js/bundle.js'));
+  });
+
+  app.get('/expressVisualizer/js/bundle.js.map', (req, res, next) => { // eslint-disable-line no-unused-vars
+    res.sendFile(path.join(__dirname, './public/js/bundle.js.map'));
+  });
+
+  app.get('/expressVisualizer/bootstrap.min.css', (req, res, next) => { // eslint-disable-line no-unused-vars
+    res.sendFile(path.join(__dirname, './public/bootstrap.min.css'));
+  });
+
+  app.get('/expressVisualizer/bootstrap.min.js', (req, res, next) => { // eslint-disable-line no-unused-vars
+    res.sendFile(path.join(__dirname, './public/bootstrap.min.js'));
   });
 };

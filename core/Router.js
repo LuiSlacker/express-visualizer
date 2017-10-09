@@ -24,16 +24,22 @@ module.exports = class Router {
           stack: stackAccumulated,
           middleware: [...acc.middleware, new Middleware(layer)],
         });
-      }
-      return Object.assign({}, acc, { stack: stackAccumulated });
+      } else return (Router.isOwnModuleEndpoint(layer)) ?  acc : Object.assign({}, acc, { stack: stackAccumulated });
     }, { middleware: [...this.globalMiddleware], stack: [] });
-  }
-
-  toJSON() {
-    return { router: this.parsedStack };
   }
 
   static isMiddleware(layer) {
     return layer.name !== 'bound dispatch' && layer.name !== 'router';
+  }
+
+  /**
+   * checks whether endpoint belongs to this very own module
+   */
+  static isOwnModuleEndpoint(layer) {
+    return layer.route && layer.route.path.includes('expressVisualizer');
+  }
+
+  toJSON() {
+    return { router: this.parsedStack };
   }
 };
