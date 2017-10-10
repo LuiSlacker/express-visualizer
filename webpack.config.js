@@ -20,7 +20,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: 'css-loader',
+        loaders: ['style-loader', 'css-loader', 'sass-loader'],
       }
     ]
   },

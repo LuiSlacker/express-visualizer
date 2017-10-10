@@ -40,6 +40,9 @@ module.exports = class Router {
   }
 
   toJSON() {
-    return { router: this.parsedStack };
+    return {
+      type: this.type,
+      router: this.parsedStack
+    };
   }
 };
