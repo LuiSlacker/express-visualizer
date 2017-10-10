@@ -1736,7 +1736,7 @@ exports = module.exports = __webpack_require__(26)(undefined);
 
 
 // module
-exports.push([module.i, ".reset, body {\n  margin: 0;\n  padding: 0; }\n\n.menu .accordion-heading {\n  position: relative; }\n\n.menu .accordion-heading .edit {\n  position: absolute;\n  top: 8px;\n  right: 30px; }\n\n.menu .level1 {\n  border-left: 4px solid #f38787; }\n\n.menu .level2 {\n  border-left: 4px solid #65c465; }\n\n.menu .level3 {\n  border-left: 4px solid #98b3fa; }\n\n.menu .collapse.in {\n  overflow: visible; }\n\n.main-flex-wrapper {\n  display: flex;\n  width: 100%;\n  position: relative;\n  margin: 0 auto;\n  hseight: 500px;\n  overflow: hidden; }\n\n.router {\n  flex-basis: 10%; }\n", ""]);
+exports.push([module.i, ".reset, body {\n  margin: 0;\n  padding: 0; }\n\n.menu .accordion-heading {\n  position: relative; }\n\n.menu .accordion-heading .edit {\n  position: absolute;\n  top: 8px;\n  right: 30px; }\n\n.menu .level1 {\n  border-left: 4px solid #f38787; }\n\n.menu .level2 {\n  border-left: 4px solid #65c465; }\n\n.menu .level3 {\n  border-left: 4px solid #98b3fa; }\n\n.menu .collapse.in {\n  overflow: visible; }\n\n.main-flex-wrapper {\n  display: flex;\n  width: 100%;\n  position: relative;\n  margin: 0 auto;\n  justify-content: space-between;\n  overflow: hidden; }\n\n.router {\n  flex-basis: 10%; }\n", ""]);
 
 // exports
 
@@ -2324,10 +2324,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-/* const Header = require('./header.jsx');
-const Content = require('./content.jsx');
-const Footer = require('./footer.jsx'); */
-
 var Main = function (_React$Component) {
   _inherits(Main, _React$Component);
 
@@ -2365,7 +2361,7 @@ var Main = function (_React$Component) {
       }).map(function (router, index) {
         return _react2.default.createElement(
           'li',
-          { key: index },
+          { className: 'nav-item', key: index },
           _react2.default.createElement(
             'label',
             { className: 'tree-toggler nav-header' },
@@ -2373,16 +2369,16 @@ var Main = function (_React$Component) {
           ),
           _react2.default.createElement(
             'ul',
-            { className: 'nav nav-list tree' },
+            { className: 'nav flex-column nav-list tree' },
             router.router.stack.filter(function (entry) {
               return entry.type === 'Endpoint';
             }).map(function (endpoint, index) {
               return _react2.default.createElement(
                 'li',
-                { key: index },
+                { className: 'nav-item', key: index },
                 _react2.default.createElement(
                   'a',
-                  { href: '#', onClick: function onClick() {
+                  { className: 'nav-link', href: '#', onClick: function onClick() {
                       return _this3.setState({ endpoint: endpoint });
                     } },
                   endpoint.HTTPverbs,
@@ -2395,6 +2391,18 @@ var Main = function (_React$Component) {
           )
         );
       });
+    }
+  }, {
+    key: 'getBadgeClasses',
+    value: function getBadgeClasses(method) {
+      var obj = {
+        GET: 'badge badge-success badge-pill',
+        DELETE: 'badge badge-danger badge-pill',
+        POST: 'badge badge-primary badge-pill',
+        PUT: 'badge badge-info badge-pill',
+        PATCH: 'badge badge-default badge-pill'
+      };
+      return obj[method];
     }
   }, {
     key: 'render',
@@ -2416,51 +2424,55 @@ var Main = function (_React$Component) {
             'div',
             { className: 'router' },
             _react2.default.createElement(
-              'h4',
-              null,
-              'Router'
-            ),
-            _react2.default.createElement(
               'div',
-              { className: 'well', style: { width: 300, padding: '8px 0' } },
+              { className: 'card', style: { width: 300 } },
               _react2.default.createElement(
                 'div',
-                { style: { overflowY: 'scroll', overflowX: 'hidden', height: '600px' } },
+                { className: 'card-header' },
+                'Router'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'card-body' },
                 _react2.default.createElement(
-                  'ul',
-                  { className: 'nav nav-list' },
+                  'div',
+                  { style: { overflowY: 'scroll', overflowX: 'hidden', height: '600px' } },
                   _react2.default.createElement(
-                    'li',
-                    null,
+                    'ul',
+                    { className: 'nav flex-column nav-list' },
                     _react2.default.createElement(
-                      'label',
-                      { className: 'tree-toggler nav-header' },
-                      'Main Router'
+                      'li',
+                      { className: 'nav-item' },
+                      _react2.default.createElement(
+                        'label',
+                        { className: 'tree-toggler nav-header' },
+                        'Main Router'
+                      ),
+                      _react2.default.createElement(
+                        'ul',
+                        { className: 'nav flex-column nav-list tree' },
+                        this.state.stack.filter(function (entry) {
+                          return entry.type === 'Endpoint';
+                        }).map(function (endpoint, index) {
+                          return _react2.default.createElement(
+                            'li',
+                            { className: 'nav-item', key: index },
+                            _react2.default.createElement(
+                              'a',
+                              { className: 'nav-link', href: '#', onClick: function onClick() {
+                                  return _this4.setState({ endpoint: endpoint });
+                                } },
+                              endpoint.HTTPverbs,
+                              '  ',
+                              endpoint.path
+                            )
+                          );
+                        })
+                      )
                     ),
-                    _react2.default.createElement(
-                      'ul',
-                      { className: 'nav nav-list tree' },
-                      this.state.stack.filter(function (entry) {
-                        return entry.type === 'Endpoint';
-                      }).map(function (endpoint, index) {
-                        return _react2.default.createElement(
-                          'li',
-                          { key: index },
-                          _react2.default.createElement(
-                            'a',
-                            { href: '#', onClick: function onClick() {
-                                return _this4.setState({ endpoint: endpoint });
-                              } },
-                            endpoint.HTTPverbs,
-                            '  ',
-                            endpoint.path
-                          )
-                        );
-                      })
-                    )
-                  ),
-                  _react2.default.createElement('li', { className: 'divider' }),
-                  this.renderRouter(this.state.stack)
+                    _react2.default.createElement('li', { className: 'divider' }),
+                    this.renderRouter(this.state.stack)
+                  )
                 )
               )
             )
@@ -2468,14 +2480,76 @@ var Main = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'stack' },
-            _react2.default.createElement(
-              'h4',
-              null,
-              'Stack'
-            ),
-            this.state.endpoint.HTTPverbs,
-            '  ',
-            this.state.endpoint.path
+            this.state.endpoint.path && _react2.default.createElement(
+              'div',
+              { className: 'card' },
+              _react2.default.createElement(
+                'div',
+                { className: 'card-header' },
+                'Endpoint'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'card-body' },
+                _react2.default.createElement(
+                  'h4',
+                  { className: 'card-title' },
+                  _react2.default.createElement(
+                    'span',
+                    { className: this.getBadgeClasses(this.state.endpoint.HTTPverbs) },
+                    this.state.endpoint.HTTPverbs
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    ' ',
+                    this.state.endpoint.path
+                  )
+                ),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'card-text' },
+                  'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
+                ),
+                _react2.default.createElement(
+                  'h5',
+                  null,
+                  'Middleware-stack'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { id: 'accordion', role: 'tablist' },
+                  this.state.endpoint.globalMDDWStack.map(function (mdw, index) {
+                    return _react2.default.createElement(
+                      'div',
+                      { key: index, className: 'card' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'card-header', role: 'tab', id: 'headingOne' },
+                        _react2.default.createElement(
+                          'h6',
+                          { className: 'mb-0' },
+                          _react2.default.createElement(
+                            'a',
+                            { 'data-toggle': 'collapse', href: "#collapseOne" + index, 'aria-expanded': 'false', 'aria-controls': "#collapseOne" + index },
+                            mdw.name
+                          )
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { id: "collapseOne" + index, className: 'collapse', role: 'tabpanel', 'aria-labelledby': 'headingOne', 'data-parent': '#accordion' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'card-body' },
+                          mdw.handler
+                        )
+                      )
+                    );
+                  })
+                )
+              )
+            )
           )
         )
       );
