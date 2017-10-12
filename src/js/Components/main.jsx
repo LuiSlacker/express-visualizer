@@ -27,11 +27,11 @@ class Main extends React.Component {
   renderRouter(stack) {
     return (
       stack.filter(entry => entry.type === 'Router').map((router, index) =>
-        <li className='nav-item' key={index}><label className="tree-toggler nav-header">{router.type}</label>
+        <li className='nav-item' key={index}><label className="tree-toggler nav-header">{router.type} {router.path}</label>
           <ul className="nav flex-column nav-list tree">
             {
               router.router.stack.filter(entry => entry.type === 'Endpoint').map((endpoint, index) =>
-                <li className='nav-item' key={index}><a className="nav-link" href="#" onClick={() => this.setState({ endpoint })}>{endpoint.HTTPverbs}  {endpoint.path}</a></li>
+                <li className='nav-item' key={index}><a className="nav-link" href="#" onClick={() => {this.setState({ endpoint })}}>{endpoint.HTTPverbs}  {endpoint.path}</a></li>
             )}
             {this.renderRouter(router.router.stack)}
           </ul>
@@ -48,6 +48,10 @@ class Main extends React.Component {
       PATCH: 'badge badge-default badge-pill',
     }
     return obj[method];
+  }
+
+  handleEndpointClick() {
+
   }
 
   render() {
@@ -76,7 +80,7 @@ class Main extends React.Component {
           </div>
         </div>
         <div className="stack">
-          {this.state.endpoint.path && <div className="card">
+          {this.state.endpoint.path && <div className="card" style={{width: 800}}>
               <div className="card-header">Endpoint</div>
               <div className="card-body">
                 <h4 className="card-title">
@@ -98,7 +102,7 @@ class Main extends React.Component {
 
                     <div id={"collapseOne"+  index} className="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                       <div className="card-body">
-                        {mdw.handler}
+                      <pre className="prettyprint">{mdw.handler}</pre>
                       </div>
                     </div>
                   </div>

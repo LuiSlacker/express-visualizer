@@ -2365,7 +2365,9 @@ var Main = function (_React$Component) {
           _react2.default.createElement(
             'label',
             { className: 'tree-toggler nav-header' },
-            router.type
+            router.type,
+            ' ',
+            router.path
           ),
           _react2.default.createElement(
             'ul',
@@ -2379,7 +2381,7 @@ var Main = function (_React$Component) {
                 _react2.default.createElement(
                   'a',
                   { className: 'nav-link', href: '#', onClick: function onClick() {
-                      return _this3.setState({ endpoint: endpoint });
+                      _this3.setState({ endpoint: endpoint });
                     } },
                   endpoint.HTTPverbs,
                   '  ',
@@ -2404,6 +2406,9 @@ var Main = function (_React$Component) {
       };
       return obj[method];
     }
+  }, {
+    key: 'handleEndpointClick',
+    value: function handleEndpointClick() {}
   }, {
     key: 'render',
     value: function render() {
@@ -2482,7 +2487,7 @@ var Main = function (_React$Component) {
             { className: 'stack' },
             this.state.endpoint.path && _react2.default.createElement(
               'div',
-              { className: 'card' },
+              { className: 'card', style: { width: 800 } },
               _react2.default.createElement(
                 'div',
                 { className: 'card-header' },
@@ -2542,7 +2547,11 @@ var Main = function (_React$Component) {
                         _react2.default.createElement(
                           'div',
                           { className: 'card-body' },
-                          mdw.handler
+                          _react2.default.createElement(
+                            'pre',
+                            { className: 'prettyprint' },
+                            mdw.handler
+                          )
                         )
                       )
                     );

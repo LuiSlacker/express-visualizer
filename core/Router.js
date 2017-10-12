@@ -4,18 +4,19 @@ const Endpoint = require('./Endpoint');
 const Middleware = require('./Middleware');
 
 module.exports = class Router {
-  constructor(router, globalMiddleware = []) {
+  constructor(router, globalMiddleware = [], globalPath, previousRouterRegexString) {
     this.globalMiddleware = globalMiddleware;
-    this.type = this.constructor.name;
     this.rawStack = router.stack;
+    this.type = this.constructor.name;
+    this.path = previousRouterRegexString ? globalPath + Router.parsePath(previousRouterRegexString) : '';
     this.parsedStack = this.parseRoutersStack();
   }
 
   parseRoutersStack() {
     return this.rawStack.reduce((acc, layer) => {
       const options = {
-        'bound dispatch': () => new Endpoint(layer, acc.middleware),
-        router: () => new Router(layer.handle, acc.middleware),
+        'bound dispatch': () => new Endpoint(layer, acc.middleware, this.path),
+        router: () => new Router(layer.handle, acc.middleware, this.path, layer.regexp.toString()),
         default: () => new Middleware(layer),
       };
       const stackAccumulated = [...acc.stack, (options[layer.name] || options.default)()];
@@ -32,6 +33,10 @@ module.exports = class Router {
     return layer.name !== 'bound dispatch' && layer.name !== 'router';
   }
 
+  static parsePath(pathRegex) {
+    return new RegExp(/\/\^\\(\/.*)\\\/\?/g).exec(pathRegex)[1];
+  }
+
   /**
    * checks whether endpoint belongs to this very own module
    */
@@ -42,7 +47,8 @@ module.exports = class Router {
   toJSON() {
     return {
       type: this.type,
-      router: this.parsedStack
+      path: this.path,
+      router: this.parsedStack,
     };
   }
 };

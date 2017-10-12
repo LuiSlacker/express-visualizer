@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = class Endpoint {
-  constructor(layer, globalMiddlewares) {
+  constructor(layer, globalMiddlewares, globalPath = '') {
     this.layer = layer;
     this.type = this.constructor.name;
-    this.path = layer.route.path;
+    this.path = globalPath + layer.route.path;
     this.pathParams = layer.keys;
     this.HTTPverbs = this.extractHTTPVerbs();
     this.localMDDWStack = this.extractLocalMddwStack();
