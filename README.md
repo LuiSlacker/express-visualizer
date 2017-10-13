@@ -41,8 +41,11 @@ app.use(errorHandler());
 const server = app.listen(process.env.PORT || 4001, () => {
   log.info(`server started, listening on port: ${server.address().port}`);
 });
+```
 
-
+A new endpoint is will then be registered to your app and you can browse your routes at
+```
+<yourHost:yourPort>/expressVisualizer/visualize
 ```
 
 ## License
