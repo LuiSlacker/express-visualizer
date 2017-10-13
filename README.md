@@ -18,7 +18,9 @@ $ npm install express-middleware-visualizer --save-dev
 ```
 ## Features
 
-Displays all endpoints registered with an express-app and show each middleware stack. Also works for [nested routers](http://expressjs.com/en/4x/api.html#router).
+* Displays all endpoints registered with an express-app
+* Shows the global middleware stack applied for each endpoint
+* Also works for [nested routers](http://expressjs.com/en/4x/api.html#router) in Express 4.
 
 ## Usage
 
