@@ -1682,6 +1682,10 @@ var _main = __webpack_require__(29);
 
 var _main2 = _interopRequireDefault(_main);
 
+var _nav = __webpack_require__(65);
+
+var _nav2 = _interopRequireDefault(_nav);
+
 var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
@@ -1692,7 +1696,12 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_main2.default, null), document.getElementById('app'));
+_reactDom2.default.render(_react2.default.createElement(
+  'div',
+  null,
+  _react2.default.createElement(_nav2.default, null),
+  _react2.default.createElement(_main2.default, null)
+), document.getElementById('app'));
 
 /* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/petulantslacker/Documents/HTW/IC1/express-visualizer-wrapper/lib/express-visualizer/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "app.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
@@ -1736,7 +1745,7 @@ exports = module.exports = __webpack_require__(26)(undefined);
 
 
 // module
-exports.push([module.i, ".reset, body {\n  margin: 0;\n  padding: 0; }\n\n.menu .accordion-heading {\n  position: relative; }\n\n.menu .accordion-heading .edit {\n  position: absolute;\n  top: 8px;\n  right: 30px; }\n\n.menu .level1 {\n  border-left: 4px solid #f38787; }\n\n.menu .level2 {\n  border-left: 4px solid #65c465; }\n\n.menu .level3 {\n  border-left: 4px solid #98b3fa; }\n\n.menu .collapse.in {\n  overflow: visible; }\n\n.main-flex-wrapper {\n  display: flex;\n  width: 100%;\n  position: relative;\n  margin: 0 auto;\n  justify-content: space-between;\n  overflow: hidden; }\n\n.router {\n  flex-basis: 10%; }\n", ""]);
+exports.push([module.i, ".reset, body {\n  margin: 0;\n  padding: 0; }\n\n.menu .accordion-heading {\n  position: relative; }\n\n.menu .accordion-heading .edit {\n  position: absolute;\n  top: 8px;\n  right: 30px; }\n\n.menu .level1 {\n  border-left: 4px solid #f38787; }\n\n.menu .level2 {\n  border-left: 4px solid #65c465; }\n\n.menu .level3 {\n  border-left: 4px solid #98b3fa; }\n\n.menu .collapse.in {\n  overflow: visible; }\n\n.main-flex-wrapper {\n  display: flex;\n  width: 100%;\n  position: relative;\n  margin: 0 auto;\n  justify-content: space-between;\n  overflow: hidden; }\n\n.router {\n  overflow-y: scroll;\n  position: relative;\n  height: 750px; }\n\n.endpoint {\n  overflow-y: scroll;\n  position: relative;\n  height: 750px; }\n\nnav {\n  margin-bottom: 1em; }\n\n.flex-center-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 800px;\n  height: 100%; }\n\n.nav {\n  padding-left: 5px !important; }\n", ""]);
 
 // exports
 
@@ -2418,11 +2427,6 @@ var Main = function (_React$Component) {
         'main',
         null,
         _react2.default.createElement(
-          'h1',
-          null,
-          'Express Middleware-Stack Visualizer'
-        ),
-        _react2.default.createElement(
           'div',
           { className: 'main-flex-wrapper' },
           _react2.default.createElement(
@@ -2485,9 +2489,9 @@ var Main = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'stack' },
-            this.state.endpoint.path && _react2.default.createElement(
+            this.state.endpoint.path ? _react2.default.createElement(
               'div',
-              { className: 'card', style: { width: 800 } },
+              { className: 'card endpoint', style: { width: 800 } },
               _react2.default.createElement(
                 'div',
                 { className: 'card-header' },
@@ -2510,11 +2514,6 @@ var Main = function (_React$Component) {
                     ' ',
                     this.state.endpoint.path
                   )
-                ),
-                _react2.default.createElement(
-                  'p',
-                  { className: 'card-text' },
-                  'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
                 ),
                 _react2.default.createElement(
                   'h5',
@@ -2557,6 +2556,14 @@ var Main = function (_React$Component) {
                     );
                   })
                 )
+              )
+            ) : _react2.default.createElement(
+              'div',
+              { className: 'flex-center-wrapper' },
+              _react2.default.createElement(
+                'div',
+                null,
+                'Select an endpoint to see details.'
               )
             )
           )
@@ -23711,6 +23718,49 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = performance || {};
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/petulantslacker/Documents/HTW/IC1/express-visualizer-wrapper/lib/express-visualizer/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/petulantslacker/Documents/HTW/IC1/express-visualizer-wrapper/lib/express-visualizer/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Nav = function Nav() {
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "nav",
+      { className: "navbar navbar-expand-lg navbar-light bg-light" },
+      _react2.default.createElement(
+        "a",
+        { className: "navbar-brand", href: "#" },
+        "Express Middleware-Stack Visualizer"
+      ),
+      _react2.default.createElement(
+        "button",
+        { className: "navbar-toggler", type: "button", "data-toggle": "collapse", "data-target": "#navbarSupportedContent", "aria-controls": "navbarSupportedContent", "aria-expanded": "false", "aria-label": "Toggle navigation" },
+        _react2.default.createElement("span", { className: "navbar-toggler-icon" })
+      )
+    )
+  );
+};
+
+exports.default = Nav;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/petulantslacker/Documents/HTW/IC1/express-visualizer-wrapper/lib/express-visualizer/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "nav.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ })
 /******/ ]);

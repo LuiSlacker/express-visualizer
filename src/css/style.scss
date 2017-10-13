@@ -31,9 +31,29 @@ body{
 }
 
 .router {
-  flex-basis: 10%;
+  overflow-y: scroll;
+  position: relative;
+  height: 750px;
 }
 
-.stack {
+.endpoint {
+  overflow-y: scroll;
+  position: relative;
+  height: 750px;
+}
 
+nav {
+  margin-bottom: 1em;
+}
+
+.flex-center-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  height: 100%;
+}
+
+.nav {
+  padding-left: 5px !important;
 }

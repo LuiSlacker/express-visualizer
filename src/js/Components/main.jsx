@@ -56,7 +56,6 @@ class Main extends React.Component {
 
   render() {
     return (<main>
-      <h1>Express Middleware-Stack Visualizer</h1>
       <div className='main-flex-wrapper'>
         <div className="router">
           <div className="card" style={{width: 300}}>
@@ -80,14 +79,14 @@ class Main extends React.Component {
           </div>
         </div>
         <div className="stack">
-          {this.state.endpoint.path && <div className="card" style={{width: 800}}>
+          {this.state.endpoint.path
+          ? <div className="card endpoint" style={{width: 800}}>
               <div className="card-header">Endpoint</div>
               <div className="card-body">
                 <h4 className="card-title">
                   <span className={this.getBadgeClasses(this.state.endpoint.HTTPverbs)}>{this.state.endpoint.HTTPverbs}</span>
                   <span> {this.state.endpoint.path}</span>
                 </h4>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <h5>Middleware-stack</h5>
                 <div id="accordion" role="tablist">
                 {this.state.endpoint.globalMDDWStack.map((mdw, index) =>
@@ -109,8 +108,9 @@ class Main extends React.Component {
                 )}
                 </div>
               </div>
-
-
+            </div>
+          : <div className='flex-center-wrapper'>
+              <div>Select an endpoint to see details.</div>
             </div>
           }
         </div>
