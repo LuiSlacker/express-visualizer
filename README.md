@@ -1,6 +1,8 @@
 # Express Visualizer
 
-[![NPM Version][npm-image]][npm-url]
+Visualize all endpoints registered within an express-app and browse all global middlewares applied to those.
+
+<img src="https://raw.githubusercontent.com/LuiSlacker/express-visualizer/master/example_screenshot.png" alt="Drawing" style="width: 800px;"/>
 
 ## Installation
 
