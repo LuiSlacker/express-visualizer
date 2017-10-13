@@ -26,20 +26,4 @@ module.exports = (app) => {
   app.get('/expressVisualizer/js/bundle.js.map', (req, res, next) => { // eslint-disable-line no-unused-vars
     res.sendFile(path.join(__dirname, './public/js/bundle.js.map'));
   });
-
-  app.get('/expressVisualizer/bootstrap.min.css', (req, res, next) => { // eslint-disable-line no-unused-vars
-    res.sendFile(path.join(__dirname, './public/bootstrap.min.css'));
-  });
-
-  app.get('/expressVisualizer/bootstrap.min.js', (req, res, next) => { // eslint-disable-line no-unused-vars
-    res.sendFile(path.join(__dirname, './public/bootstrap.min.js'));
-  });
-
-  app.get('/expressVisualizer/js/highlight.min.js', (req, res, next) => { // eslint-disable-line no-unused-vars
-    res.sendFile(path.join(__dirname, './public/js/highlight.min.js'));
-  });
-
-  app.get('/expressVisualizer/highlight.css', (req, res, next) => { // eslint-disable-line no-unused-vars
-    res.sendFile(path.join(__dirname, './public/default.min.css'));
-  });
 };

@@ -1,1 +1,9 @@
 src
+src_frontend
+
+webpack.config.js
+.editorconfig
+.eslintignore
+.eslintrc.json
+.babelrc
+.gitignore

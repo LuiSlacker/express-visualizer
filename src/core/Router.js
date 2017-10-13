@@ -34,7 +34,9 @@ module.exports = class Router {
   }
 
   static parsePath(pathRegex) {
-    return new RegExp(/\/\^\\(\/.*)\\\/\?/g).exec(pathRegex)[1];
+    const regEx = new RegExp(/\/\^\\(\/.*)\\\/\?/g);
+    const matchArray = regEx.exec(pathRegex);
+    return matchArray ? matchArray[1] : 'n.a.';
   }
 
   /**

@@ -5,10 +5,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    filename: './src/js/app.jsx',
+    filename: './src_frontend/js/app.jsx',
   },
   output: {
-    filename: './public/js/bundle.js',
+    filename: './dist/public/js/bundle.js',
   },
   devtool: 'source-map',
   module: {
@@ -26,8 +26,8 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('./public/css/style.css', { allChunks: true }),
-    new CleanWebpackPlugin(['./public'], { exclude: ['index.html', 'bootstrap.min.css', 'bootstrap.min.js'] }),
+    // new CleanWebpackPlugin(['./public'], { exclude: ['index.html', 'bootstrap.min.css', 'bootstrap.min.js'] }),
   ],
-  watch: true,
+  watch: false,
 };
 
