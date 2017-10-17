@@ -16,7 +16,7 @@ module.exports = class Router {
     return this.rawStack.reduce((acc, layer) => {
       const options = {
         'bound dispatch': () => new Endpoint(layer, acc.middleware, this.path),
-        router: () => new Router(layer.handle, acc.middleware, this.path, layer.regexp.toString()),
+        router: () => new Router(layer.handle, acc.middleware, this.path === '' ? '' : this.path, layer.regexp.toString()),
         default: () => new Middleware(layer),
       };
       const stackAccumulated = [...acc.stack, (options[layer.name] || options.default)()];
@@ -36,7 +36,7 @@ module.exports = class Router {
   static parsePath(pathRegex) {
     const regEx = new RegExp(/\/\^\\(\/.*)\\\/\?/g);
     const matchArray = regEx.exec(pathRegex);
-    return matchArray ? matchArray[1] : 'n.a.';
+    return matchArray ? matchArray[1] : '';
   }
 
   /**
@@ -49,7 +49,7 @@ module.exports = class Router {
   toJSON() {
     return {
       type: this.type,
-      path: this.path,
+      path: this.path === '' ? '/' : this.path,
       router: this.parsedStack,
     };
   }

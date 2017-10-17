@@ -33,7 +33,10 @@ const app = express();
 
 // register your routes and subrouters here
 
-// place this line after all routes and subrouteres have been registered, but just before any errorHandlers
+/**
+** place this line after all routes and subrouteres have been registered,
+** but just before any errorHandlers
+*/
 require('express-middleware-visualizer')(app);
 
 app.use(errorHandler());
@@ -43,7 +46,7 @@ const server = app.listen(process.env.PORT || 4001, () => {
 });
 ```
 
-A new endpoint is will then be registered to your app and you can browse your routes at
+A new endpoint will then be registered to your app and you can browse your routes at
 ```
 <yourHost:yourPort>/expressVisualizer/visualize
 ```
