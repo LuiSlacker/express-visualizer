@@ -1,8 +1,21 @@
 {
   "name": "express-middleware-visualizer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Visualizes routes and their corresponding global middleware-stack of an express-app.",
-  "keywords": ["node", "express", "middleware", "middlewarestack", "middleware-stack", "middleware stack", "middleware-stack-visualizer", "express-middleware-visualizer", "express-middleware-stack", "express-middleware-stack-visualizer", "express-routes", "express routes"],
+  "keywords": [
+    "node",
+    "express",
+    "middleware",
+    "middlewarestack",
+    "middleware-stack",
+    "middleware stack",
+    "middleware-stack-visualizer",
+    "express-middleware-visualizer",
+    "express-middleware-stack",
+    "express-middleware-stack-visualizer",
+    "express-routes",
+    "express routes"
+  ],
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
