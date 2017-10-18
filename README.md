@@ -58,7 +58,7 @@ app.use((err, req, res, next) => {
 });
 
 const server = app.listen(process.env.PORT || 4001, () => {
-  log.info(`server started, listening on port: ${server.address().port}`);
+  console.info(`server started, listening on port: ${server.address().port}`);
 });
 ```
 
