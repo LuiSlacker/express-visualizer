@@ -27,29 +27,54 @@ $ npm install express-middleware-visualizer --save-dev
 ## Usage
 
 Simply require the package passing the global app object to it.
+
+```
+require('express-middleware-visualizer')(app);
+````
+
+You should place this line directly after you have attached all routes to you express app, but before any errorHandlers.
+See a simplyfied example below:
+
 ```
 const express = require('express');
 const app = express();
 
-// register your routes and subrouters here
+app.get('/, (req, res, next) => {
+  res.send('Hello Express-middleware-visualizer');
+});
 
-/**
-** place this line after all routes and subrouteres have been registered,
-** but just before any errorHandlers
-*/
-require('express-middleware-visualizer')(app);
+if (process.env.NODE_ENV !== 'production') {
+  require('express-middleware-visualizer')(app);
+}
 
-app.use(errorHandler());
+// catch 404s
+app.use((req, res, next) => {
+  next(new Error(`Endpoint ${req.originalUrl} for method ${req.method} is not defined.`));
+});
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.status || 500).json(err);
+});
 
 const server = app.listen(process.env.PORT || 4001, () => {
   log.info(`server started, listening on port: ${server.address().port}`);
 });
 ```
 
-A new endpoint will then be registered to your app and you can browse your routes at
+Two new endpoints will then be registered to your app and you can browse your routes at:
 ```
 <yourHost:yourPort>/expressVisualizer/visualize
 ```
+
+To see the json containing all the routes and middleware information, navigate to:
+```
+<yourHost:yourPort>/expressVisualizer/fetchData
+```
+
+## Important Notice
+
+If you accidentally attach the package also in production it will still only add the new endpoints if ``NODE_ENV !== production.`` Therefore your sensible data will never be leaked in production.
 
 ## License
 
