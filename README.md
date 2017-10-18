@@ -1,4 +1,4 @@
-# Express Visualizer
+# express-middleware-visualizer
 
 Visualize all endpoints registered within an express-app and browse all global middlewares applied to those.
 
