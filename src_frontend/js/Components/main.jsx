@@ -13,6 +13,8 @@ class Main extends React.Component {
     }
     this.fetchStack = this.fetchStack.bind(this);
     this.renderRouter = this.renderRouter.bind(this);
+    this.isNoRouteAttached = this.isNoRouteAttached.bind(this);
+
     this.fetchStack();
   }
 
@@ -50,8 +52,9 @@ class Main extends React.Component {
     return obj[method];
   }
 
-  handleEndpointClick() {
-
+  isNoRouteAttached() {
+    debugger;
+    return this.state.stack.filter(entry => entry.type === 'Endpoint').length === 0;
   }
 
   render() {
@@ -62,15 +65,18 @@ class Main extends React.Component {
           <div className="card-header">Router</div>
             <div className="card-body">
               <div style={{overflowY: 'scroll', overflowX: 'hidden', height: '600px'}}>
-                <ul className="nav flex-column nav-list">
-                  <li className='nav-item'><label className="tree-toggler nav-header">Main Router</label>
-                    <ul className="nav flex-column nav-list tree">
-                    {
-                      this.state.stack.filter(entry => entry.type === 'Endpoint').map((endpoint, index) =>
-                        <li className='nav-item' key={index}><a className="nav-link" href="#" onClick={() => this.setState({ endpoint })}>{endpoint.HTTPverbs}  {endpoint.path}</a></li>
-                    )}
-                    </ul>
-                  </li>
+                <ul className="nav flex-column nav-list" style={{height: '100%'}}>
+                  {this.isNoRouteAttached()
+                    ? <div className='flex-center-wrapper'>There are no routes attached to your express-app.</div>
+                    : <li className='nav-item'><label className="tree-toggler nav-header">Main Router</label>
+                        <ul className="nav flex-column nav-list tree">
+                        {
+                          this.state.stack.filter(entry => entry.type === 'Endpoint').map((endpoint, index) =>
+                            <li className='nav-item' key={index}><a className="nav-link" href="#" onClick={() => this.setState({ endpoint })}>{endpoint.HTTPverbs}  {endpoint.path}</a></li>
+                        )}
+                        </ul>
+                      </li>
+                  }
                   <li className="divider"></li>
                   {this.renderRouter(this.state.stack)}
                 </ul>
@@ -109,7 +115,7 @@ class Main extends React.Component {
                 </div>
               </div>
             </div>
-          : <div className='flex-center-wrapper'>
+          : <div className='flex-center-wrapper' style={{width: '800px'}}>
               <div>Select an endpoint to see details.</div>
             </div>
           }
