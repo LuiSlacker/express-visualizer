@@ -25,7 +25,7 @@ $ npm install express-middleware-visualizer --save-dev
 * Also works for [nested routers](http://expressjs.com/en/4x/api.html#router) in Express 4.
 
 ## Usage
-
+### CommonJS
 Simply require the package passing the global app object to it.
 
 ```
@@ -70,6 +70,14 @@ Two new endpoints will then be registered to your app and you can browse your ro
 To see the json containing all the routes and middleware information, navigate to:
 ```
 <yourHost:yourPort>/expressVisualizer/fetchData
+```
+
+### ES2015 Import
+
+If you want to use the new ES2015 module loader you have to use the following to lines:
+```
+import expressMDWVisualizer from 'express-middleware-visualizer';
+expressMDWVisualizer(app);
 ```
 
 ## Important Notice
