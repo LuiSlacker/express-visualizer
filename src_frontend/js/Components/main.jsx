@@ -53,7 +53,6 @@ class Main extends React.Component {
   }
 
   isNoRouteAttached() {
-    debugger;
     return this.state.stack.filter(entry => entry.type === 'Endpoint').length === 0;
   }
 
@@ -77,7 +76,7 @@ class Main extends React.Component {
                         </ul>
                       </li>
                   }
-                  <li className="divider"></li>
+                  <hr style={{width: '100%'}}/>
                   {this.renderRouter(this.state.stack)}
                 </ul>
               </div>
