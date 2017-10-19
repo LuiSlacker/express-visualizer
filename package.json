@@ -1,6 +1,6 @@
 {
   "name": "express-middleware-visualizer",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Visualizes routes and their corresponding global middleware-stack of an express-app.",
   "keywords": [
     "node",
