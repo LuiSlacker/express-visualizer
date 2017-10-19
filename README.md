@@ -32,7 +32,7 @@ Simply require the package passing the global app object to it.
 require('express-middleware-visualizer')(app);
 ````
 
-You should place this line directly after you have attached all routes to you express app, but before any errorHandlers.
+You should place this line directly after you have attached all routes to your express app, but before any errorHandlers.
 See a simplyfied example below:
 
 ```
